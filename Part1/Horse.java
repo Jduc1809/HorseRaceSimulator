@@ -74,7 +74,7 @@ public class Horse
         }
     }
 
-    public void setSymbol(char newSymbol)
+    public void setSymbol(String newSymbol)
     {
         this.horseSymbol = newSymbol;
     }
