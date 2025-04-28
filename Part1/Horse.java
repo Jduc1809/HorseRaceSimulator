@@ -42,7 +42,7 @@ public class Horse
         return this.horseName;
     }
 
-    public char getSymbol()
+    public String getSymbol()
     {
         return this.horseSymbol;
     }
