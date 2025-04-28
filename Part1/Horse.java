@@ -12,7 +12,7 @@ public class Horse
     private double horseConfidence;
 
     // Constructor
-    public Horse(char horseSymbol, String horseName, double horseConfidence)
+    public Horse(String horseSymbol, String horseName, double horseConfidence)
     {
         this.horseSymbol = horseSymbol;
         this.horseName = horseName;
