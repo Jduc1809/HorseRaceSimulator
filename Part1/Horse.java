@@ -6,7 +6,7 @@ public class Horse
 {
     // Fields
     private String horseName;
-    private char horseSymbol;
+    private String horseSymbol;
     private int distanceTravelled;
     private boolean hasFallen;
     private double horseConfidence;
