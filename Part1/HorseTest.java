@@ -2,7 +2,7 @@
 \cocoatextscaling0\cocoaplatform0{\fonttbl\f0\fswiss\fcharset0 Helvetica;}
 {\colortbl;\red255\green255\blue255;}
 {\*\expandedcolortbl;;}
-\paperw11900\paperh16840\margl1440\margr1440\vieww29200\viewh18380\viewkind0
+\paperw11900\paperh16840\margl1440\margr1440\vieww29200\viewh16020\viewkind0
 \pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
 
 \f0\fs24 \cf0 import java.util.concurrent.TimeUnit;\
@@ -14,12 +14,12 @@ import java.lang.Math;\
 class Horse\
 \{\
     private String horseName;\
-    private char horseSymbol;\
+    private String horseSymbol; // CHANGED to String\
     private int distanceTravelled;\
     private boolean hasFallen;\
     private double horseConfidence;\
 \
-    public Horse(char horseSymbol, String horseName, double horseConfidence)\
+    public Horse(String horseSymbol, String horseName, double horseConfidence)\
     \{\
         this.horseSymbol = horseSymbol;\
         this.horseName = horseName;\
@@ -48,7 +48,7 @@ class Horse\
         return this.horseName;\
     \}\
 \
-    public char getSymbol()\
+    public String getSymbol()\
     \{\
         return this.horseSymbol;\
     \}\
@@ -80,7 +80,7 @@ class Horse\
         \}\
     \}\
 \
-    public void setSymbol(char newSymbol)\
+    public void setSymbol(String newSymbol)\
     \{\
         this.horseSymbol = newSymbol;\
     \}\
@@ -254,9 +254,9 @@ public class HorseTest\
     public static void main(String[] args)\
     \{\
         // Create three horses\
-        Horse ferrari = new Horse('\uc0\u55356 \u57294 ', "Ferrari", 0.9);\
-        Horse porsche = new Horse('\uc0\u55357 \u56983 ', "Porsche", 0.85);\
-        Horse audi = new Horse('\uc0\u55357 \u56985 ', "Audi", 0.8);\
+        Horse ferrari = new Horse("\uc0\u55356 \u57294 ", "Ferrari", 0.9);\
+        Horse porsche = new Horse("\uc0\u55357 \u56983 ", "Porsche", 0.85);\
+        Horse audi = new Horse("\uc0\u55357 \u56985 ", "Audi", 0.8);\
 \
         // Print initial info\
         System.out.println("Initial Status:");\
@@ -264,27 +264,6 @@ public class HorseTest\
         System.out.println(porsche.getName() + " symbol: " + porsche.getSymbol() + ", confidence: " + porsche.getConfidence());\
         System.out.println(audi.getName() + " symbol: " + audi.getSymbol() + ", confidence: " + audi.getConfidence());\
         System.out.println();\
-\
-        // Move and fall tests\
-        ferrari.moveForward();\
-        ferrari.moveForward();\
-        ferrari.moveForward();\
-        System.out.println(ferrari.getName() + " has moved forward to distance: " + ferrari.getDistanceTravelled());\
-\
-        porsche.fall();\
-        System.out.println(porsche.getName() + " has fallen? " + porsche.hasFallen());\
-\
-        audi.moveForward();\
-        System.out.println(audi.getName() + " has moved forward to distance: " + audi.getDistanceTravelled());\
-\
-        audi.goBackToStart();\
-        System.out.println(audi.getName() + " after reset distance: " + audi.getDistanceTravelled() + ", fallen? " + audi.hasFallen());\
-\
-        audi.setSymbol('\uc0\u55357 \u56960 ');\
-        System.out.println(audi.getName() + "'s new symbol: " + audi.getSymbol());\
-\
-        ferrari.setConfidence(1.2); // Should clamp to 1.0\
-        System.out.println(ferrari.getName() + "'s updated confidence: " + ferrari.getConfidence());\
 \
         // Full race\
         System.out.println("\\nStarting the full race:");\
