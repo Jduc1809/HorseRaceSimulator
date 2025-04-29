@@ -9,7 +9,6 @@ import javax.swing.JOptionPane;
 import javax.swing.SwingUtilities;
 
 
-
 public class RaceGUI extends JFrame {
     private TrackPanel trackPanel;
     private javax.swing.Timer timer;
@@ -34,7 +33,33 @@ public class RaceGUI extends JFrame {
             }
         });
 
-        add(startButton, BorderLayout.SOUTH);
+        // Weather dropdown
+        JPanel controlPanel = new JPanel();
+        controlPanel.setLayout(new FlowLayout());
+
+        JComboBox<String> weatherBox = new JComboBox<>(new String[]{"Sunny", "Muddy", "Icy"});
+        weatherBox.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                String selected = (String) weatherBox.getSelectedItem();
+                switch (selected) {
+                    case "Sunny":
+                        trackPanel.setWeather(WeatherCondition.SUNNY);
+                        break;
+                    case "Muddy":
+                        trackPanel.setWeather(WeatherCondition.MUDDY);
+                        break;
+                    case "Icy":
+                        trackPanel.setWeather(WeatherCondition.ICY);
+                        break;
+                }
+            }
+        });
+
+        controlPanel.add(new JLabel("Weather:"));
+        controlPanel.add(weatherBox);
+        controlPanel.add(startButton);
+
+        add(controlPanel, BorderLayout.SOUTH);
 
         pack();
         setLocationRelativeTo(null); // center window
