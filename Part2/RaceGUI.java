@@ -14,6 +14,7 @@ import javax.swing.JLabel;
 
 public class RaceGUI extends JFrame {
     private TrackPanel trackPanel;
+    private StatisticsManager stats;
     private javax.swing.Timer timer;
 
     public RaceGUI() {
@@ -28,6 +29,8 @@ public class RaceGUI extends JFrame {
 
         trackPanel = new TrackPanel(horses);
         add(trackPanel, BorderLayout.CENTER);
+
+	stats = new StatisticsManager();
 
         JButton startButton = new JButton("Start Race!");
         startButton.addActionListener(new ActionListener() {
@@ -79,11 +82,13 @@ public class RaceGUI extends JFrame {
                 trackPanel.updateRace();
                 HorseGUI winner = trackPanel.checkWinner();
                 if (winner != null) {
-                    timer.stop();
-                    JOptionPane.showMessageDialog(RaceGUI.this,
-                        "🏆 The winner is " + winner.getName() + " (" + winner.getBreed() + ")!",
-                        "Race Finished", JOptionPane.INFORMATION_MESSAGE);
-                }
+    			timer.stop();
+    			stats.recordWin(winner.getName()); // record the winner
+    			JOptionPane.showMessageDialog(RaceGUI.this,
+        		"🏆 The winner is " + winner.getName() + " (" + winner.getBreed() + ")!\n\n" + stats.getStats(),
+        		"Race Finished", JOptionPane.INFORMATION_MESSAGE);
+		}		
+
             }
         });
         timer.start();
